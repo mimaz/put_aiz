@@ -159,7 +159,7 @@ void performance_sorting_test(const char   *name,
 {
     printf("performance test of %s sort\n", name);
 
-    int count = 5000;
+    int count = 20000;
     int arr[count];
 
     for (int i = 0; i < count; i++)
