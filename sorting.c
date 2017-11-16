@@ -47,6 +47,29 @@ void bubble_sort(int *array,
     } while (repeat);
 }
 
+void insertion_sort(int *array,
+                    int  begin,
+                    int  end)
+{
+    int split = begin + 1;
+
+    while (split < end)
+    {
+        int value = array[split];
+        int index = begin;
+
+        while (index < split && array[index] < value)
+            index++;
+
+        for (int i = split; i > index; i--)
+            array[i] = array[i - 1];
+
+        array[index] = value;
+
+        split++;
+    }
+}
+
 void merge_sort(int *array,
                 int  begin,
                 int  end)
@@ -201,10 +224,12 @@ int main()
     srand(clock());
 
     visual_sorting_test("bubble", bubble_sort);
+    visual_sorting_test("insertion", insertion_sort);
     visual_sorting_test("merge", merge_sort);
     visual_sorting_test("quick", quick_sort);
 
     performance_sorting_test("bubble", bubble_sort);
+    performance_sorting_test("insertion", insertion_sort);
     performance_sorting_test("merge", merge_sort);
     performance_sorting_test("quick", quick_sort);
 
