@@ -198,6 +198,8 @@ void performance_sorting_test(const char   *name,
 
 int main()
 {
+    srand(clock());
+
     visual_sorting_test("bubble", bubble_sort);
     visual_sorting_test("merge", merge_sort);
     visual_sorting_test("quick", quick_sort);
