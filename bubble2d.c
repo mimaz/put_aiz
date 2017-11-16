@@ -1,19 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void swap_ints(int *p, int *q)
-{
-    int t = *p;
-
-    *p = *q;
-    *q = t;
-}
-
 struct matrix
 {
     int **matrix;
-    int columns;
-    int rows;
+    int   columns;
+    int   rows;
 };
 
 struct matrix *create_matrix(int columns, int rows)
@@ -68,7 +60,7 @@ void print_matrix(struct matrix *m)
     }
 }
 
-int *get_value(struct matrix *m, int idx)
+int *bubble2d_get_value_ptr(struct matrix *m, int idx)
 {
     int y = idx / m->columns;
     int x = idx % m->columns;
@@ -87,13 +79,16 @@ void bubble2d(struct matrix *m)
 
         for (int i = 1; i < count; i++)
         {
-            int *f = get_value(m, i - 1);
-            int *s = get_value(m, i);
+            int *f = bubble2d_get_value_ptr(m, i - 1);
+            int *s = bubble2d_get_value_ptr(m, i);
 
             if (*s < *f)
             {
                 repeat = 1;
-                swap_ints(f, s);
+
+                int b = *f;
+                *f = *s;
+                *s = b;
             }
         }
     } while(repeat);
@@ -111,6 +106,7 @@ int main()
 
     printf("\nsorted:\n");
     print_matrix(m);
+    printf("\n\n");
 
 
     delete_matrix(m);
